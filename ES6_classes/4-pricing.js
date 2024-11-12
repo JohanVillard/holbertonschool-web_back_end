@@ -12,7 +12,7 @@ export default class Pricing {
 
   set amount(newAmount) {
     if (typeof newAmount !== 'number') {
-      throw Error('Amount must be a number.');
+      throw new Error('Amount must be a number.');
     }
     this._amount = newAmount;
   }
@@ -23,7 +23,7 @@ export default class Pricing {
 
   set currency(newCurrency) {
     if (!(newCurrency instanceof Currency)) {
-      throw Error('Amount must be a number.');
+      throw new Error('Amount must be a number.');
     }
     this._currency = newCurrency;
   }
