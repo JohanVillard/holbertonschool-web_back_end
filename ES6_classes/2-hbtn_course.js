@@ -38,7 +38,7 @@ export default class HolbertonCourse {
     this._students = newStudents;
   }
 
-  static isStringArray(arr) {
+  isStringArray(arr) {
     return arr.every((i) => typeof i === 'string');
   }
 }
