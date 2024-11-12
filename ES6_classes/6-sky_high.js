@@ -1,4 +1,6 @@
-import Building from './5-building'
+/* eslint-disable class-methods-use-this */
+
+import Building from './5-building';
 
 export default class SkyHighBuilding extends Building {
   constructor(sqft, floors) {
@@ -6,11 +8,18 @@ export default class SkyHighBuilding extends Building {
     this.floors = floors;
   }
 
-  get floor() {
+  get floors() {
     return this._floors;
   }
 
+  set floors(newFloors) {
+    if (typeof newFloors !== 'number') {
+      throw new Error('Floors must be a number.');
+    }
+    this._floors = newFloors;
+  }
+
   evacuationWarningMessage() {
-    return 'Evacuate slowly the NUMBER_OF_FLOORS floors'
+    return 'Evacuate slowly the NUMBER_OF_FLOORS floors';
   }
 }
