@@ -1,6 +1,6 @@
 export default function cleanSet(set, startString) {
   if (startString === '') {
-    return startString;
+    return '';
   }
 
   let endString = '';
