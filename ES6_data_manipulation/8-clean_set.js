@@ -3,16 +3,9 @@ export default function cleanSet(set, startString) {
     return '';
   }
 
-  let endString = '';
-  for (const item of set) {
-    if (item.startsWith(startString)) {
-      endString += `${item.replace(startString, '')}-`
-    }
+	return Array.from(set)
+		.filter(item => item.startsWith(startString))
+		.map(item => item.slice(startString.length))
+		.join('-');
   }
 
-  if (endString.charAt(endString.length - 1) === '-') {
-    endString = endString.slice(0, -1);
-  }
-
-  return endString;
-}
