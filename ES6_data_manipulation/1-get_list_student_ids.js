@@ -1,4 +1,4 @@
-export default function (students) {
+export default function getListStudentIds(students) {
   if (students.constructor !== Array) {
     return [];
   }
