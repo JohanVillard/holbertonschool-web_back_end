@@ -2,9 +2,10 @@
 """This module defines task_wait_random function."""
 import asyncio
 wait_random = __import__('0-basic_async_syntax').wait_random
+from typing import Coroutine, Any
 
 
-def task_wait_random(max_delay: int) -> asyncio.Task:
+def task_wait_random(max_delay: int) -> 'asyncio.Task[Any]':
     """
     Create a asyncio task.
 
@@ -12,6 +13,6 @@ def task_wait_random(max_delay: int) -> asyncio.Task:
         max_delay (int): The maximum amount of time to process the task.
 
     Returns:
-        Task: An asyncio task object.
+        asyncio.Task: An asyncio task object.
     """
     return asyncio.create_task(wait_random(max_delay))
