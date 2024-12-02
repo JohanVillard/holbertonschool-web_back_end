@@ -1,10 +1,10 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """This module defines a to_kv function."""
 
-from typing import Union
+from typing import Tuple, Union
 
 
-def to_kv(k: str, v: int | float) -> tuple[str, float]:
+def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
     """
     Create a tuple with a string and the square of a number.
 
