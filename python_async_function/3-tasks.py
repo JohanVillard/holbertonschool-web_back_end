@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 """This module defines task_wait_random function."""
 import asyncio
+from asyncio import Task
 from typing import Callable
 wait_random = __import__('0-basic_async_syntax').wait_random
 
-def task_wait_random(max_delay: int) -> asyncio.Task[Callable[[int], float]]:
+def task_wait_random(max_delay: int) ->  Task[Callable[[int], float]]:
     """
     Create a asyncio task.
 
