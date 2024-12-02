@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """This module defines a element_length function."""
 
 from typing import Sequence, Iterable, List, Tuple
