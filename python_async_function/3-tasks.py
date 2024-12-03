@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """This module defines task_wait_random function."""
+
 import asyncio
 from asyncio import Task
 from typing import Callable
