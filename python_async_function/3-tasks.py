@@ -15,6 +15,6 @@ def task_wait_random(max_delay: int) -> Task[Callable[[int], float]]:
         max_delay (int): The maximum amount of time to process the task.
 
     Returns:
-        asyncio.Task: An asyncio task object.
+        Task: An asyncio task object.
     """
     return asyncio.create_task(wait_random(max_delay))
