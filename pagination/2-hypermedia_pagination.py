@@ -55,10 +55,10 @@ class Server:
         total_items = len(dataset)
 
         # total_pages
-        total_pages = (total_items + page_size - 1) // page_size
+        total_pages: int = (total_items + page_size - 1) // page_size
 
         # page
-        current_data_page = self.get_page(page, page_size)
+        data: List[List] = self.get_page(page, page_size)
 
         # next_page
         next_page: Optional[int] = page + 1
@@ -76,7 +76,7 @@ class Server:
         return {
             "page_size": page_size,
             "page": page,
-            "data": current_data_page,
+            "data": data,
             "next_page": next_page,
             "prev_page": prev_page,
             "total_pages": total_pages,
