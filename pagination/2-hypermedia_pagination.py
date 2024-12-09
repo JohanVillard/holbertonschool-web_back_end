@@ -4,7 +4,15 @@
 
 import csv
 import math
-from typing import List, Dict, Union, Optional
+from typing import List, Dict, Union, Optional,TypedDict
+
+class Paging(TypedDict):
+    page_size: int
+    page: int
+    data: List[List]
+    next_page: Optional[int]
+    prev_page: Optional[int]
+    total_pages: int
 
 
 class Server:
@@ -41,7 +49,7 @@ class Server:
             self,
             page: int = 1,
             page_size: int = 10
-    ) -> Dict[str, Union[int | List[List] | Optional[int]]]:
+    ) -> Paging:
         """Return a dict."""
         dataset = self.dataset()
         total_items = len(dataset)
