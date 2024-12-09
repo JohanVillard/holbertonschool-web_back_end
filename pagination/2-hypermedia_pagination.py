@@ -28,7 +28,7 @@ class Server:
         """Get the specified page."""
         assert isinstance(page, int)
         assert page > 0
-        assert isinstance(page_size, int) 
+        assert isinstance(page_size, int)
         assert page_size > 0
 
         indexes = index_range(page, page_size)
@@ -37,7 +37,11 @@ class Server:
 
         return self.__dataset[indexes[0]: indexes[-1]]
 
-    def get_hyper(self, page:int = 1, page_size: int = 10) -> Dict[str, int | List[List] | Optional[int]]:
+    def get_hyper(
+            self,
+            page: int = 1,
+            page_size: int = 10
+    ) -> Dict[str, Union[int | List[List] | Optional[int]]]:
         """Return a dict."""
         dataset = self.dataset()
         total_items = len(dataset)
@@ -45,24 +49,22 @@ class Server:
         # total_pages
         total_pages = (total_items + page_size - 1) // page_size
 
-
         # page
-        current_data_page = self.get_page(page, page_size)   
+        current_data_page = self.get_page(page, page_size)
 
         # next_page
-        next_page = page + 1
-        if next_page > total_pages:
+        next_page: Optional[int] = page + 1
+        if page + 1 > total_pages:
             next_page = None
 
         # prev_page
-        prev_page = page - 1
-        if prev_page < 1:
+        prev_page: Optional[int] = page - 1
+        if page - 1 < 1:
             prev_page = None
 
         if page > total_pages:
             page_size = 0
 
-        
         return {
             "page_size": page_size,
             "page": page,
@@ -71,7 +73,8 @@ class Server:
             "prev_page": prev_page,
             "total_pages": total_pages,
         }
-        
+
+
 def index_range(page: int, page_size: int) -> tuple[int, int]:
     """Compute the range of pagination parameters."""
     start_index = (page - 1) * page_size
