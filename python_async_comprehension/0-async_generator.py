@@ -3,10 +3,10 @@
 """This module defines a coroutine `async_generator`."""
 import asyncio
 import random
-from typing import Generator
+from typing import AsyncGenerator
 
 
-async def async_generator() -> Generator[int, float, float]:
+async def async_generator() -> AsyncGenerator[int, None]:
     """
     Create a coroutine.
 
