@@ -62,7 +62,7 @@ class Server:
 
         # next_page
         next_page: Optional[int] = page + 1
-        if page > total_pages:
+        if page >= total_pages:
             next_page = None
 
         # prev_page
