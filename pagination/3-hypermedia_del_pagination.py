@@ -69,7 +69,7 @@ class Server:
         next_index = index
         data = []
 
-        for item in range(page_size):
+        for _ in range(page_size):
             # If the next index don't exist
             while next_index not in csv:
                 next_index += 1
