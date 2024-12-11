@@ -44,28 +44,25 @@ class Server:
             index: Union[int, None] = None,
             page_size: int = 10
     ) -> Dict[str, Union[int, List[List]]]:
+        # Convert dataset into CSV
         csv = self.indexed_dataset()
 
+        # Check index range
         assert isinstance(index, int) and 0 <= index <= len(csv)
 
         next_index = index
         data = []
 
-        if index == 0 and page_size == 10:
-            for item in range(page_size):
-                data.append(csv.get(next_index))
+        for item in range(page_size):
+            # If the next index don't exist
+            if not csv.get(next_index):
+                # Go to the next index
                 next_index += 1
+                # Go to the next range
+                continue
 
-        elif index == 10 and page_size == 10 and not csv.keys() >= {3, 6, 7}:
             data.append(csv.get(next_index))
             next_index += 1
-
-        else:
-            for item in range(page_size):
-                while not csv.get(next_index):
-                    next_index += 1
-                data.append(csv.get(next_index))
-                next_index += 1
 
         return {
             "index": index,
