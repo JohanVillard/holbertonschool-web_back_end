@@ -4,7 +4,8 @@
 
 import csv
 import math
-from typing import List, Dict, Union, Optional,TypedDict
+from typing import List, TypedDict, Optional
+
 
 class Paging(TypedDict):
     page_size: int
@@ -34,22 +35,19 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Get the specified page."""
-        assert isinstance(page, int)
-        assert page > 0
-        assert isinstance(page_size, int)
-        assert page_size > 0
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
 
         indexes = index_range(page, page_size)
 
         self.__dataset = self.dataset()
 
-        return self.__dataset[indexes[0]: indexes[-1]]
+        if indexes[0] >= len(self.__dataset):
+            return []
 
-    def get_hyper(
-            self,
-            page: int = 1,
-            page_size: int = 10
-    ) -> Paging:
+        return self.__dataset[indexes[0]:indexes[-1]]
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Paging:
         """Return a dict."""
         dataset = self.dataset()
         total_items = len(dataset)
