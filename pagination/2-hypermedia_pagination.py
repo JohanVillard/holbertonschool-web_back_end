@@ -53,7 +53,9 @@ class Server:
         total_items = len(dataset)
 
         # total_pages
-        total_pages: int = math.floor((total_items + page_size - 1) / page_size)
+        total_pages: int = math.floor(
+            (total_items + page_size - 1) / page_size
+        )
 
         # page
         data: List[List] = self.get_page(page, page_size)
