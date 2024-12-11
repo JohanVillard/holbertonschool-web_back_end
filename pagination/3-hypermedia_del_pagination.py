@@ -42,8 +42,7 @@ class Server:
     def get_hyper_index(self, index: Union[int, None] = None, page_size: int = 10) -> Dict:
         csv = self.indexed_dataset()
 
-        assert isinstance(index, int) and index >= 0 and index <= len(csv)
-        assert isinstance(page_size, int)
+        assert isinstance(index, int) and 0 <= index <= len(csv)
 
         next_index = index
         data = []
