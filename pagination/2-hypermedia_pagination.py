@@ -70,11 +70,8 @@ class Server:
         if page <= 1:
             prev_page = None
 
-        if page > total_pages:
-            page_size = 0
-
         return {
-            "page_size": page_size,
+            "page_size": len(data),
             "page": page,
             "data": data,
             "next_page": next_page,
