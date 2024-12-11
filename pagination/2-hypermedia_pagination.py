@@ -4,16 +4,7 @@
 
 import csv
 import math
-from typing import List, TypedDict, Optional
-
-
-class Paging(TypedDict):
-    page_size: int
-    page: int
-    data: List[List]
-    next_page: Optional[int]
-    prev_page: Optional[int]
-    total_pages: int
+from typing import List, Dict, Union, Optional
 
 
 class Server:
@@ -47,7 +38,11 @@ class Server:
 
         return self.__dataset[indexes[0]:indexes[-1]]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Paging:
+    def get_hyper(
+            self,
+            page: int = 1,
+            page_size: int = 10
+    ) -> Dict[str, Union[int, List[List], None]]:
         """Return a dict."""
         dataset = self.dataset()
         total_items = len(dataset)
