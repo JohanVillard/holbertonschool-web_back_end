@@ -14,7 +14,7 @@ async def async_generator() -> Generator[float, None, None]:
     and yields a random float between 0 and 10.
 
     Yields:
-       AsyncGenerator[float, None]: An asynchronous generator yielding
+       Generator[float, None, None]: An asynchronous generator yielding
        ten random numbers.
     """
     for _ in range(10):
