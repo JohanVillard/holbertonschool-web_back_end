@@ -71,7 +71,7 @@ class Server:
 
         for item in range(page_size):
             # If the next index don't exist
-            if not csv[next_index]:
+            if next_index not in csv:
                 # Go to the next index
                 next_index += 1
                 # Go to the next range
