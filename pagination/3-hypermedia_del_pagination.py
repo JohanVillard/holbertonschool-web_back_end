@@ -71,15 +71,18 @@ class Server:
 
         for item in range(page_size):
             # If the next index don't exist
-            while next_index not in csv:
+            if not csv[next_index]:
+                # Go to the next index
                 next_index += 1
+                # Go to the next range
+                continue
 
-            data.append(csv.get(next_index))
+            data.append(csv[next_index])
             next_index += 1
 
         return {
             "index": index,
             "data": data,
-            "page_size": page_size,
+            "page_size": len(data),
             "next_index": next_index,
         }
