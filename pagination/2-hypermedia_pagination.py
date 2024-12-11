@@ -53,7 +53,7 @@ class Server:
         total_items = len(dataset)
 
         # total_pages
-        total_pages: int = math.floor(
+        total_pages: int = math.ceil(
             (total_items + page_size - 1) / page_size
         )
 
