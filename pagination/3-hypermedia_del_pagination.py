@@ -44,6 +44,22 @@ class Server:
             index: int = None,
             page_size: int = 10
     ) -> Dict:
+        """
+        Get a dataset and retrieves the page by index.
+
+        Args:
+            index (int, optional): Starting index,
+                                   default to None.
+
+            page_size (int): Number of rows of the page,
+                             default to 10.
+
+        Returns:
+            Dict: "index": The starting index,
+                  "data": The filtered data,
+                  "page_size": The actual size page,
+                  "next_index": The index after the last of the page.
+        """
         # Convert dataset into CSV
         csv = self.indexed_dataset()
 
