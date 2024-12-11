@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """This module defines a coroutine `async_generator`."""
 import asyncio
 import random
