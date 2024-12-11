@@ -5,7 +5,7 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Any
 
 
 class Server:
@@ -43,7 +43,7 @@ class Server:
             self,
             index: Union[int, None] = None,
             page_size: int = 10
-    ) -> Dict:
+    ) -> Dict[str, Union[int, List[List]]]:
         csv = self.indexed_dataset()
 
         assert isinstance(index, int) and 0 <= index <= len(csv)
@@ -70,6 +70,6 @@ class Server:
         return {
             "index": index,
             "data": data,
-            "page_size": page_size,
+            "page_size": len(data),
             "next_index": next_index,
         }
