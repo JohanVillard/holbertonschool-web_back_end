@@ -58,11 +58,5 @@ index = 9
 res = server.get_hyper_index(index, page_size)
 del server._Server__indexed_dataset[res.get('index')]
 
-index = 0
-page_size = 10
-
-# 1- request first index
-res = server.get_hyper_index(index, page_size)
-
 #3- request next_index
 print(server.get_hyper_index(res.get('next_index'), page_size))

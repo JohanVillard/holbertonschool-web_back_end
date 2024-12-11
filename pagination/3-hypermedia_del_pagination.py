@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deletion-resilient hypermedia pagination
+Deletion-resilient hypermedia pagination.
 """
 
 import csv
@@ -71,11 +71,8 @@ class Server:
 
         for item in range(page_size):
             # If the next index don't exist
-            if not csv.get(next_index):
-                # Go to the next index
+            while next_index not in csv:
                 next_index += 1
-                # Go to the next range
-                continue
 
             data.append(csv.get(next_index))
             next_index += 1
