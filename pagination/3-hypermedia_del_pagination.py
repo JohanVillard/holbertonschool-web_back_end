@@ -39,11 +39,7 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(
-            self,
-            index: int = None,
-            page_size: int = 10
-    ) -> Dict:
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
         Get a dataset and retrieves the page by index.
 
@@ -72,10 +68,11 @@ class Server:
         next_index = index
         data = []
 
-        while len(data) < page_size:
-            if next_index in csv:
-                data.append(csv[next_index])
+        for _ in range(page_size):
+            while not csv.get(next_index):
+                next_index += 1
 
+            data.append(csv.get(next_index))
             next_index += 1
 
         return {
