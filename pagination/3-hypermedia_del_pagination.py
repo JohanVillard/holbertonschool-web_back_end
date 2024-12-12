@@ -67,7 +67,7 @@ class Server:
         csv = self.indexed_dataset()
 
         # Check index range
-        assert isinstance(index, int) and 0 <= index <= len(csv) - 1
+        assert 0 <= index <= len(csv) - 1
 
         next_index = index
         data = []
