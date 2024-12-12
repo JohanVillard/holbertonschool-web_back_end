@@ -60,6 +60,9 @@ class Server:
                   "page_size": The actual size page,
                   "next_index": The index after the last of the page.
         """
+        if index is None:
+            index = 0
+
         # Convert dataset into CSV
         csv = self.indexed_dataset()
 

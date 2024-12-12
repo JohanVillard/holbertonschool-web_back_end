@@ -15,48 +15,24 @@ except AssertionError:
     print("AssertionError raised when out of range")        
 
 
-#index = 3
-#page_size = 2
+index = 3
+page_size = 2
 
-#print("Nb items: {}".format(len(server._Server__indexed_dataset)))
-
-# 1- request first index
-#res = server.get_hyper_index(index, page_size)
-#print(res)
-
-# 2- request next index
-#print(server.get_hyper_index(res.get('next_index'), page_size))
-
-# 3- remove the first index
-#del server._Server__indexed_dataset[res.get('index')]
-#print("Nb items: {}".format(len(server._Server__indexed_dataset)))
-
-# 4- request again the initial index -> the first data retreives is not the same as the first request
-#print(server.get_hyper_index(index, page_size))
-
-# 5- request again initial next index -> same data page as the request 2-
-#print(server.get_hyper_index(res.get('next_index'), page_size))
-        
-# My tests
-print("-----------------------------------------------------------------------------------------------")
-
-index = 0
-page_size = 10
+print("Nb items: {}".format(len(server._Server__indexed_dataset)))
 
 # 1- request first index
 res = server.get_hyper_index(index, page_size)
 print(res)
 
-# 2- remove rows 3, 6 and 7
-index = 3
-res = server.get_hyper_index(index, page_size)
-del server._Server__indexed_dataset[res.get('index')]
-index = 6
-res = server.get_hyper_index(index, page_size)
-del server._Server__indexed_dataset[res.get('index')]
-index = 9
-res = server.get_hyper_index(index, page_size)
-del server._Server__indexed_dataset[res.get('index')]
+# 2- request next index
+print(server.get_hyper_index(res.get('next_index'), page_size))
 
-#3- request next_index
+# 3- remove the first index
+del server._Server__indexed_dataset[res.get('index')]
+print("Nb items: {}".format(len(server._Server__indexed_dataset)))
+
+# 4- request again the initial index -> the first data retreives is not the same as the first request
+print(server.get_hyper_index(index, page_size))
+
+# 5- request again initial next index -> same data page as the request 2-
 print(server.get_hyper_index(res.get('next_index'), page_size))
