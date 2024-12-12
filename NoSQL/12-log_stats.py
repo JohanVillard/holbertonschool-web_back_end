@@ -18,7 +18,7 @@ if __name__ == "__main__":
     num_docs_patch = nginx.count_documents({"method": "PATCH"})
     num_docs_delete = nginx.count_documents({"method": "DELETE"})
     num_docs_status = nginx.count_documents({
-        "method": " GET",
+        "method": "GET",
         "path": "/status"
     })
 
