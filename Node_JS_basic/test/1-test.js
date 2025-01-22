@@ -16,7 +16,7 @@ describe("Test du script 1-stdin.js", () => {
     child.stdin.write("Johan\n");
 
     child.on("close", code => {
-      assert(output.includes("Your name is Johan"));
+      assert(output.includes("Your name is: Johan"));
       assert(output.includes("This important software is now closing"));
       done(); // Fin du test
     });
