@@ -44,8 +44,7 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (reqUrl === '/students') {
     try {
-      const students = countStudents('dat.csv');
-      res.writeHead(200, { 'content-type': 'text/plain' });
+      const students = countStudents('databae.csv');
 
       const response = [
         'This is the list of our students',
@@ -57,6 +56,8 @@ const app = http.createServer((req, res) => {
           students[1].length
         }. List: ${students[1].join(', ')}`,
       ].join('\n');
+
+      res.writeHead(200, { 'content-type': 'text/plain' });
 
       res.end(response);
     } catch (error) {
