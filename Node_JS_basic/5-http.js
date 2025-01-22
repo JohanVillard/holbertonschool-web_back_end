@@ -1,13 +1,14 @@
 const http = require('node:http');
 const url = require('node:url');
-const fs = require('node:fs');
+const fs = require('fs').promises;
 
 const port = 1245;
 
-const countStudents = (path) => {
+const countStudents = async (path) => {
   try {
     // Use fs.readFileSync() for a synchronous version
-    const data = fs.readFileSync(path, 'utf8');
+    const data = await fs.readFile(path, 'utf8');
+
     // Split the file into lines and remove empty lines
     const lines = data.split('\n').filter((line) => line);
 
@@ -36,7 +37,7 @@ const countStudents = (path) => {
   }
 };
 
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
   const reqUrl = url.parse(req.url).pathname;
 
   if (reqUrl === '/') {
@@ -44,7 +45,7 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (reqUrl === '/students') {
     try {
-      const students = countStudents('databae.csv');
+      const students = await countStudents('database.csv');
 
       const response = [
         'This is the list of our students',
