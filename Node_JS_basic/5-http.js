@@ -37,14 +37,14 @@ const countStudents = (path) => {
 };
 
 const app = http.createServer((req, res) => {
-  res.writeHead(200, { 'content-type': 'text/plain' });
-
   const reqUrl = url.parse(req.url).pathname;
 
   if (reqUrl === '/') {
+    res.writeHead(200, { 'content-type': 'text/plain' });
     res.end('Hello Holberton School!');
   } else if (reqUrl === '/students') {
     try {
+      res.writeHead(200, { 'content-type': 'text/plain' });
       const students = countStudents('database.csv');
 
       const response = [
@@ -63,6 +63,9 @@ const app = http.createServer((req, res) => {
       res.writeHead(404);
       res.end(error.message);
     }
+  } else {
+    res.writeHead(404);
+    res.end('404 Not Found');
   }
 });
 
