@@ -26,13 +26,13 @@ function countStudents(path) {
       }
     });
 
-    process.stdout.write(`Number of students: ${CS.length + SWE.length}\n`);
+    console.log(`Number of students: ${CS.length + SWE.length}`);
 
-    process.stdout.write(
-      `Number of students in CS: ${CS.length}. List: ${CS.join(', ')}\n`,
+    console.log(
+      `Number of students in CS: ${CS.length}. List: ${CS.join(', ')}`,
     );
-    process.stdout.write(
-      `Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}\n`,
+    console.log(
+      `Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}`,
     );
   } catch (error) {
     throw new Error('Cannot load the database');
