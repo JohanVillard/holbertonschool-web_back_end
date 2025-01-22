@@ -1,8 +1,7 @@
 console.log('Welcome to Holberton School, what is your name?');
 
 process.stdin.on('data', (input) => {
-  const name = input.toString().trim();
-  console.log(`Your name is: ${name}`);
+  process.stdout.write(`Your name is: ${input}`);
 
   process.exit();
 });
