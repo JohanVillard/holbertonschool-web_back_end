@@ -1,11 +1,12 @@
-const http = require("http");
-const { defaults } = require("request");
+import { createServer } from 'node:http';
 
 const port = 1245;
 
-export default app = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Hello Holberton School!");
+const app = createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello Holberton School!');
 });
+
+export default app;
 
 app.listen(port);
