@@ -1,4 +1,4 @@
-import { createServer } from 'node:http';
+import { createServer } from 'http';
 
 const port = 1245;
 
