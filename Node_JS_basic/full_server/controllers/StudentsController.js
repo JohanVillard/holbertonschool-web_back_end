@@ -42,7 +42,7 @@ class StudentsController {
       const formattedRes = res.join('\n');
       response.status(200).send(formattedRes);
     } catch (error) {
-      response.status(500).send('Cannot load the database');
+      response.status(500).send(error.message);
     }
   }
 
@@ -64,7 +64,7 @@ class StudentsController {
 
       response.status(200).send(res);
     } catch (error) {
-      response.status(500).send('Cannot load the database');
+      response.status(500).send(error.message);
     }
   }
 }
