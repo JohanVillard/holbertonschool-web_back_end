@@ -1,4 +1,4 @@
-import readDatabase from "../utils";
+import readDatabase from '../utils';
 
 class StudentsController {
   static async getAllStudents(request, response) {
@@ -8,14 +8,14 @@ class StudentsController {
     try {
       const data = await readDatabase(databaseFilename);
       // Initialize response with the header
-      const res = ["This is the list of our students"];
+      const res = ['This is the list of our students'];
 
       // Sort object's keys by alphabetic order case insensitive
       // Get all the keys
       const keys = Object.keys(data);
 
       // Make them case insensitive by converting all in lowercase
-      const uppercasedKeys = keys.map(key => key.toUpperCase());
+      const uppercasedKeys = keys.map((key) => key.toUpperCase());
 
       // Sort the keys
       uppercasedKeys.sort((key1, key2) => {
@@ -35,14 +35,14 @@ class StudentsController {
         res.push(
           `Number of students in ${field}: ${
             sortedData[field].length
-          }. List: ${sortedData[field].join(", ")}`
+          }. List: ${sortedData[field].join(', ')}`,
         );
       }
 
-      const formattedRes = res.join("\n");
+      const formattedRes = res.join('\n');
       response.status(200).send(formattedRes);
     } catch (error) {
-      response.status(500).send("Cannot load the database");
+      response.status(500).send('Cannot load the database');
     }
   }
 
@@ -52,19 +52,19 @@ class StudentsController {
     // Get the major argument in the URL
     const { major } = request.params;
 
-    if (major !== "CS" && major !== "SWE") {
-      response.status(500).send("Major parameter must be CS or SWE");
+    if (major !== 'CS' && major !== 'SWE') {
+      response.status(500).send('Major parameter must be CS or SWE');
       return;
     }
 
     try {
       const data = await readDatabase(databaseFilename);
 
-      const res = `List: ${data[major].join(", ")}`;
+      const res = `List: ${data[major].join(', ')}`;
 
       response.status(200).send(res);
     } catch (error) {
-      response.status(500).send("Cannot load the database");
+      response.status(500).send('Cannot load the database');
     }
   }
 }
