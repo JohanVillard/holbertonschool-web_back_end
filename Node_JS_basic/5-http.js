@@ -38,9 +38,12 @@ const countStudents = async (path) => {
 const app = http.createServer(async (req, res) => {
   const reqUrl = url.parse(req.url).pathname;
 
+  // route '/'
   if (reqUrl === '/') {
     res.writeHead(200, { 'content-type': 'text/plain' });
     res.end('Hello Holberton School!');
+
+    // route '/students'
   } else if (reqUrl === '/students') {
     let response;
 
