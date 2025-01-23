@@ -43,21 +43,22 @@ app.get('/', (req, res) => {
 
 app.get('/students', async (req, res) => {
   let students;
+  let response;
+
   if (process.argv[2]) {
     students = await countStudents(process.argv[2]);
-  }
 
-  const response = [
-    'This is the list of our students',
-    `Number of students: ${(students[0] ? students[0].length : 0)
-      + (students[1] ? students[1].length : 0)}`,
-    `Number of students in CS: ${students[0] ? students[0].length : 0}. List: ${
-      students[0] ? students[0].join(', ') : ''
-    }`,
-    `Number of students in SWE: ${
-      students[1] ? students[1].length : 0
-    }. List: ${students[1] ? students[1].join(', ') : ''}`,
-  ].join('\n');
+    response = [
+      'This is the list of our students',
+      `Number of students: ${students[0] + students[1]}`,
+      `Number of students in CS: ${students[0]}. List: ${students[0].join(
+        ', ',
+      )}`,
+      `Number of students in SWE: ${students[1].length}. List: students[1].join(', ')}`,
+    ].join('\n');
+  } else {
+    response = 'This is the list of our students\nCannot load the database';
+  }
 
   res.send(response);
 });
