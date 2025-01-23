@@ -1,5 +1,5 @@
-import express from "express";
-import router from "./routes/index";
+import express from 'express';
+import router from './routes/index';
 
 const app = express();
 const port = 1245;
@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 });
 
 // Get access to all routes define in the router
-app.use("/", router);
+app.use('/', router);
 
 app.listen(port);
 

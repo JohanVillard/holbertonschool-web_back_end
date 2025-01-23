@@ -1,15 +1,15 @@
-import fs from "fs/promises";
+import fs from 'fs/promises';
 
-export const readDatabase = async path => {
+const readDatabase = async (path) => {
   try {
-    const data = await fs.readFile(path, "utf8");
-    const lines = data.split("\n").filter(line => line.trim());
+    const data = await fs.readFile(path, 'utf8');
+    const lines = data.split('\n').filter((line) => line.trim());
     const studentsData = lines.slice(1);
     const studentsByField = {};
 
-    studentsData.forEach(line => {
+    studentsData.forEach((line) => {
       // Get an array
-      const value = line.split(",");
+      const value = line.split(',');
       // The firstname is at index 0
       const firstName = value[0];
       // Get the field of the student
@@ -17,7 +17,7 @@ export const readDatabase = async path => {
 
       // If the field in the object don't exist
       if (!studentsByField[field]) {
-        // Initialize an Qempty array -> {field: []}
+        // Initialize an empty array -> {field: []}
         studentsByField[field] = [];
       }
 
@@ -27,6 +27,8 @@ export const readDatabase = async path => {
 
     return studentsByField;
   } catch (error) {
-    throw new Error(error);
+    throw new Error('Cannot load the database');
   }
 };
+
+export default readDatabase;
