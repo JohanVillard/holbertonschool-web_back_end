@@ -1,8 +1,6 @@
-const http = require('node:http');
-const url = require('node:url');
+const http = require('http');
+const url = require('url');
 const fs = require('fs').promises;
-
-const port = 1245;
 
 const countStudents = async (path) => {
   try {
@@ -45,7 +43,12 @@ const app = http.createServer(async (req, res) => {
     res.end('Hello Holberton School!');
   } else if (reqUrl === '/students') {
     try {
-      const students = await countStudents('database.csv');
+      if (!process.argv[2]) {
+        throw new Error('No database provided');
+      }
+
+      // Get the name of the database ... node 5-http.js path
+      const students = await countStudents(process.argv[2]);
 
       const response = [
         'This is the list of our students',
@@ -59,7 +62,6 @@ const app = http.createServer(async (req, res) => {
       ].join('\n');
 
       res.writeHead(200, { 'content-type': 'text/plain' });
-
       res.end(response);
     } catch (error) {
       res.writeHead(404);
@@ -71,6 +73,6 @@ const app = http.createServer(async (req, res) => {
   }
 });
 
-app.listen(port);
+app.listen(1245);
 
 module.exports = app;
