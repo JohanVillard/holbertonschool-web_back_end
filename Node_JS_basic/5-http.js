@@ -42,32 +42,33 @@ const app = http.createServer(async (req, res) => {
     res.writeHead(200, { 'content-type': 'text/plain' });
     res.end('Hello Holberton School!');
   } else if (reqUrl === '/students') {
-    try {
-      let students = [];
+    let response;
 
-      if (process.argv[2]) {
-        // Must specify the name of the database ... node 5-http.js path
-        students = await countStudents(process.argv[2]);
-      }
-
-      const response = [
-        'This is the list of our students',
-        `Number of students: ${(students[0] ? students[0].length : 0)
-          + (students[1] ? students[1].length : 0)}`,
-        `Number of students in CS: ${
-          students[0] ? students[0].length : 0
-        }. List: ${students[0] ? students[0].join(', ') : ''}`,
-        `Number of students in SWE: ${
-          students[1] ? students[1].length : 0
-        }. List: ${students[1] ? students[1].join(', ') : ''}`,
-      ].join('\n');
-
-      res.writeHead(200, { 'content-type': 'text/plain' });
-      res.end(response);
-    } catch (error) {
+    if (!process.argv[2]) {
+      response = 'This is the list of our students\nCannot load the database';
       res.writeHead(404, { 'content-type': 'text/plain' });
-      res.end(error.message);
+    } else {
+      try {
+        // Must specify the name of the database ... node 5-http.js path
+        const students = await countStudents(process.argv[2]);
+
+        response = [
+          'This is the list of our students',
+          `Number of students: ${students[0].length + students[1].length}`,
+          `Number of students in CS: ${
+            students[0].length
+          }. List: ${students[0].join(', ')}`,
+          `Number of students in SWE: ${
+            students[1].length
+          }. List: ${students[1].join(', ')}`,
+        ].join('\n');
+
+        res.writeHead(200, { 'content-type': 'text/plain' });
+      } catch (error) {
+        res.writeHead(404, { 'content-type': 'text/plain' });
+      }
     }
+    res.end(response);
   } else {
     res.writeHead(404, { 'content-type': 'text/plain' });
     res.end('404 Not Found');
