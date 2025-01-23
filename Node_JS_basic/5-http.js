@@ -47,7 +47,7 @@ const app = http.createServer(async (req, res) => {
         throw new Error('No database provided');
       }
 
-      // Get the name of the database ... node 5-http.js path
+      // Must specify the name of the database ... node 5-http.js path
       const students = await countStudents(process.argv[2]);
 
       const response = [
