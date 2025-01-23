@@ -31,7 +31,7 @@ class StudentsController {
       }
 
       // Build response by adding each field in the array
-      for (const [field, students] of Object.entries(sortedData)) {
+      for (const [field] of Object.entries(sortedData)) {
         res.push(
           `Number of students in ${field}: ${
             sortedData[field].length
