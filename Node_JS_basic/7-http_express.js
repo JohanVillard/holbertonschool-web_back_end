@@ -50,11 +50,13 @@ app.get('/students', async (req, res) => {
 
     response = [
       'This is the list of our students',
-      `Number of students: ${students[0] + students[1]}`,
-      `Number of students in CS: ${students[0]}. List: ${students[0].join(
+      `Number of students: ${students[0].length + students[1].length}`,
+      `Number of students in CS: ${students[0].length} List: ${students[0].join(
         ', ',
       )}`,
-      `Number of students in SWE: ${students[1].length}. List: students[1].join(', ')}`,
+      `Number of students in SWE: ${
+        students[1].length
+      }. List: ${students[1].join(', ')}`,
     ].join('\n');
   } else {
     response = 'This is the list of our students\nCannot load the database';
