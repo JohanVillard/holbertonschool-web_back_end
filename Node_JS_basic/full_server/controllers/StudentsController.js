@@ -2,11 +2,8 @@ import readDatabase from '../utils';
 
 class StudentsController {
   static async getAllStudents(request, response) {
-    // Get the path of the db in res.locals
-    const { databaseFilename } = response.locals;
-
     try {
-      const data = await readDatabase(databaseFilename);
+      const data = await readDatabase(process.argv[2]);
       // Initialize response with the header
       const res = ['This is the list of our students'];
 
@@ -47,8 +44,6 @@ class StudentsController {
   }
 
   static async getAllStudentsByMajor(request, response) {
-    const { databaseFilename } = response.locals;
-
     // Get the major argument in the URL
     const { major } = request.params;
 
@@ -58,7 +53,7 @@ class StudentsController {
     }
 
     try {
-      const data = await readDatabase(databaseFilename);
+      const data = await readDatabase(process.argv[2]);
 
       const res = `List: ${data[major].join(', ')}`;
 
