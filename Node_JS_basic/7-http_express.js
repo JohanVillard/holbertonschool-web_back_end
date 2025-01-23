@@ -13,13 +13,13 @@ const countStudents = async (path) => {
     const lines = data.split('\n').filter((line) => line.trim());
 
     // Remove the header
-    const studentData = lines.slice(1);
+    const students = lines.slice(1);
 
     const CS = [];
     const SWE = [];
 
     // Iterate over each line to access individual rows
-    studentData.forEach((line) => {
+    students.forEach((line) => {
       // Split each line by comma to access individual values
       const values = line.split(',');
       const field = values.length - 1;
@@ -31,8 +31,13 @@ const countStudents = async (path) => {
       }
     });
 
-    return [CS, SWE];
+    return [
+      `Number of students: ${CS.length + SWE.length}`,
+      `Number of students in CS: ${CS.length}. List: ${CS.join(', ')}`,
+      `Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}`,
+    ].join('\n');
   } catch (error) {
+    console.log(error);
     throw new Error('Cannot load the database');
   }
 };
@@ -42,27 +47,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-  let students;
-  let response;
+  try {
+    const students = await countStudents(process.argv[2]);
+    console.log(students);
 
-  if (process.argv[2]) {
-    students = await countStudents(process.argv[2]);
-
-    response = [
-      'This is the list of our students',
-      `Number of students: ${students[0].length + students[1].length}`,
-      `Number of students in CS: ${
-        students[0].length
-      }. List: ${students[0].join(', ')}`,
-      `Number of students in SWE: ${
-        students[1].length
-      }. List: ${students[1].join(', ')}`,
-    ].join('\n');
-  } else {
-    response = 'This is the list of our students\nCannot load the database';
+    res.end(`This is the list of our students\n${students}`);
+  } catch (error) {
+    res.end('This is the list of our students\nCannot load the database');
   }
-
-  res.send(response);
 });
 
 app.listen(port);
